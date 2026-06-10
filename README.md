@@ -7,10 +7,10 @@
 ## Datasets
 
 This project uses data from the High Time Resolution Universe Survey. The source for the HTRU 1 and HTRU 2 datasets can be found at:
-
 https://github.com/scienceguyrob/PulsarFeatureLab/
 
 References:
+
 [1] R. J. Lyon, B. W. Stappers, S. Cooper, J. M. Brooke, J. D. Knowles, Fifty Years of Pulsar Candidate Selection: From simple filters to a new principled real-time classification approach, Submitted to MNRAS.
 
 [2] R. J. Lyon et al., "Fifty Years of Pulsar Candidate Selection: From simple filters to a new principled real-time classification approach", Submitted to Monthly Notices of the Royal Astronomical Society.
