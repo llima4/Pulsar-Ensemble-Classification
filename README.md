@@ -1,6 +1,8 @@
 # Pulsar-Ensemble-Classification
 
 ## Project Goal
+Distinguishing between real pulsars and radio frequency interference has posed a long-standing challenge in radio astronomy. Machine learning methods offer a promising solution for building a more efficient pipeline for collecting high-volume data on pulsars using radio telescopes. Thus, this project's main goals are the following:
+
 1. Build robust ensemble learning models (XGBoost and random forest) for classifying pulsar candidates.
 2. Investigate feature selection and cross-dataset generalization using the HTRU1 and HTRU2 datasets.
 
