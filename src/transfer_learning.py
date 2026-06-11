@@ -42,7 +42,7 @@ def cross_dataset_experiment(
             y_train
         )
 
-    elif model_type == "rf":
+    else:
 
         model = train_random_forest(
             X_train,
@@ -61,12 +61,13 @@ def cross_dataset_experiment(
 def run_transfer_feature_experiments(
     train_df,
     test_df,
-    train_summary,
+    feature_summary,
     train_name,
     test_name,
-    target,
-    top_k,
-    vif_threshold
+    target="class",
+    top_k=5,
+    vif_threshold=10,
+    model_type="xgboost"
 ):
 
     experiments = {}
@@ -75,14 +76,14 @@ def run_transfer_feature_experiments(
     _, metrics = cross_dataset_experiment(
         train_df,
         test_df,
-        target
+        model_type
     )
 
     experiments["All Features"] = metrics
 
     # Low VIF
     low_vif = select_low_vif_features(
-        train_summary,
+        feature_summary,
         vif_threshold
     )
 
@@ -97,7 +98,7 @@ def run_transfer_feature_experiments(
     _, metrics = cross_dataset_experiment(
         train_low_vif,
         test_low_vif,
-        target
+        model_type
     )
 
     experiments["Low VIF"] = metrics
@@ -105,7 +106,7 @@ def run_transfer_feature_experiments(
     # Top Importance
     top_features = (
         select_top_importance_features(
-            train_summary,
+            feature_summary,
             top_k
         )
     )
@@ -129,7 +130,7 @@ def run_transfer_feature_experiments(
     # Top Importance + Low VIF
     top_low_vif = (
         select_top_importance_low_vif_features(
-            train_summary,
+            feature_summary,
             top_k,
             vif_threshold
         )
@@ -146,7 +147,7 @@ def run_transfer_feature_experiments(
     _, metrics = cross_dataset_experiment(
         train_top_vif,
         test_top_vif,
-        target
+        model_type
     )
 
     experiments["Top Importance + Low VIF"] = metrics

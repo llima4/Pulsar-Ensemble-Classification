@@ -7,6 +7,12 @@ from statsmodels.stats.outliers_influence import (
 
 import src.config
 
+from src.data_loader import *
+from src.modeling import (
+    train_xgboost,
+    train_random_forest
+    )
+
 # VIF metric for measuring multicollinearity
 def compute_vif(df, target):
 
@@ -41,35 +47,82 @@ def target_correlations(df, target="class"):
     return corr
 
 
-# Dataframe of metrics for each feature
-def feature_summary(importance, corr_target, vif):
+def feature_summary(
+    df,
+    model_type="xgboost",
+    target="class"
+):
+
+    X, y = split_features_target(
+        df,
+        target
+    )
+
+    if model_type == "xgboost":
+
+        model = train_xgboost(
+            X,
+            y
+        )
+
+    elif model_type == "rf":
+
+        model = train_random_forest(
+            X,
+            y
+        )
+
+    importance = pd.Series(
+        model.feature_importances_,
+        index=X.columns,
+        name="Importance"
+    )
+
+    vif = compute_vif(
+        df,
+        target
+    )
+
+    corr_target = target_correlations(
+        df,
+        target
+    )
+
     feature_summary = pd.DataFrame({
-            "Target_Corr": corr_target,
-            "XGB_Importance": importance
-        })
+        "Target_Corr": corr_target,
+        "Importance": importance
+    })
 
-        feature_summary = (
-            feature_summary
-            .merge(vif, left_index=True,
-                   right_on="Feature")
-            .set_index("Feature")
+    feature_summary["Abs_Target_Corr"] = (
+        feature_summary["Target_Corr"].abs()
+    )
+
+    feature_summary = (
+        feature_summary
+        .merge(
+            vif,
+            left_index=True,
+            right_on="Feature"
         )
+        .set_index("Feature")
+    )
 
-        feature_summary["Importance_Rank"] = (
-            feature_summary["XGB_Importance"]
-            .rank(ascending=False)
-        )
+    feature_summary["Importance_Rank"] = (
+        feature_summary["Importance"]
+        .rank(ascending=False)
+    )
 
-        feature_summary["Corr_Rank"] = (
-            feature_summary["Abs_Target_Corr"]
-            .rank(ascending=False)
-        )
+    feature_summary["Corr_Rank"] = (
+        feature_summary["Abs_Target_Corr"]
+        .rank(ascending=False)
+    )
 
+    return feature_summary
 
 # Collect features based on given metric thresholds
 def select_low_vif_features(
     feature_summary,
-    vif_threshold
+    vif_threshold=10
 ):
 
     return list(
@@ -81,7 +134,7 @@ def select_low_vif_features(
 
 def select_top_importance_features(
     feature_summary,
-    top_k
+    top_k=5
 ):
 
     return list(
@@ -97,8 +150,8 @@ def select_top_importance_features(
 
 def select_top_importance_low_vif_features(
     feature_summary,
-    top_k,
-    vif_threshold
+    top_k=5,
+    vif_threshold=10
 ):
 
     filtered = feature_summary[

@@ -1,6 +1,7 @@
 import pandas as pd
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
 from sklearn.metrics import (
     accuracy_score,
@@ -12,12 +13,14 @@ from sklearn.metrics import (
 
 import src.config
 
+from src.data_loader import split_features_target
+
 # Train XGBoost model
 def train_xgboost(X_train, y_train):
 
     model = XGBClassifier(
         eval_metric="logloss",
-        random_state
+        random_state=42
     )
 
     model.fit(X_train, y_train)
@@ -30,7 +33,7 @@ def train_random_forest(X_train, y_train):
 
     model = RandomForestClassifier(
         n_estimators=500,
-        random_state
+        random_state=42
     )
 
     model.fit(X_train, y_train)
@@ -59,7 +62,7 @@ def evaluate_model(model, X_test, y_test):
 def within_dataset_experiment(
     df,
     model_type="xgboost"
-):
+    ):
 
     X, y = split_features_target(df)
 
@@ -69,7 +72,7 @@ def within_dataset_experiment(
             y,
             stratify=y,
             test_size=0.2,
-            random_state
+            random_state=42
         )
     )
 
@@ -94,10 +97,7 @@ def within_dataset_experiment(
         y_test
     )
 
-    importance = pd.Series(
-        model.feature_importances_,
-        index=X.columns,
-        name="Importance"
+    return (
+        model,
+        metrics
     )
-
-    return model, metrics, importance

@@ -25,7 +25,7 @@ def load_htru2():
 
 def split_features_target(
     df,
-    target
+    target="class"
 ):
 
     X = df.drop(columns=[target])

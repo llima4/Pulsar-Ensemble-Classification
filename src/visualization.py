@@ -5,7 +5,7 @@ import seaborn as sns
 import src.config
 
 # Feature distributions
-def plot_feature_distributions(df, target):
+def plot_feature_distributions(df, target="class"):
     features = [c for c in df.columns if c != target]
 
     ncols = 3
@@ -34,7 +34,7 @@ def plot_feature_distributions(df, target):
 
 
 # Feature corrleations with class label
-def plot_target_correlations(df, target):
+def plot_target_correlations(df, target="class"):
 
     corr = (
         df.corr(numeric_only=True)[target]
@@ -51,7 +51,7 @@ def plot_target_correlations(df, target):
 
 
 # Feature correlation heatmap
-def plot_correlation_heatmap(df, target):
+def plot_correlation_heatmap(df, target="class"):
 
     corr = df.drop(columns=[target]).corr()
 
@@ -80,7 +80,9 @@ def feature_importances(importance):
 # Visualize cross-dataset model results
 def plot_transfer_metrics(
     results,
-    title
+    title,
+    save_path=None,
+    show=True
 ):
 
     metrics = [
@@ -117,4 +119,13 @@ def plot_transfer_metrics(
 
     plt.tight_layout()
 
-    plt.show()
+    if save_path is not None:
+        plt.savefig(
+            save_path,
+            bbox_inches="tight"
+        )
+
+    if show:
+        plt.show()
+    else:
+        plt.close()
