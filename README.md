@@ -44,7 +44,7 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 <img src="results/figures/htru2_to_htru1.png" width="500">
 </div>
 
-## Datasets
+## Data
 
 This project uses data from the High Time Resolution Universe Survey. The source for the HTRU 1 and HTRU 2 datasets can be found at:
 https://github.com/scienceguyrob/PulsarFeatureLab/
