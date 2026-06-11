@@ -29,6 +29,7 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 <div align="center">
 <img src="results/figures/feature_rank_agreement.png" width="500">
 </div>
+
  - Many of the top importance features for the HTRU2 model exhibited high multicollinearity with other features.
  - For HTRU1 model, only the profile skewness had a high VIF among the top importance features.
 
