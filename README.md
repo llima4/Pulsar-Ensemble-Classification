@@ -23,7 +23,7 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 
 ## Results 
 1. Feature Analysis:
- - Models trained on both datasets agreed on some of the most important features such as skewness of the integrated pulse profile and best S/N value.
+ - Models trained on both datasets agreed on some of the most important features such as skewness of the integrated pulse profile and best S/N value (score 13).
  - The two models disagreed on most of the feature importances.
 
 <div align="center">
