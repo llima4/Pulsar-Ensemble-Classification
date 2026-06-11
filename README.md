@@ -25,7 +25,9 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 1. Feature Analysis:
  - Models trained on both datasets agreed on some of the most important features such as skewness of the integrated pulse profile and best S/N value.
  - The two models disagreed on most of the feature importances.
+<div align="center">
 <img src="results/figures/feature_rank_agreement.png" width="500">
+</div>
  - Many of the top importance features for the HTRU2 model exhibited high multicollinearity with other features.
  - For HTRU1 model, only the profile skewness had a high VIF among the top importance features.
 
@@ -35,8 +37,10 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 - The model trained on HTRU1 had more stable performance across accuracy, precision, F!, and MCC compared to the HTRU2 model.
 - The HTRU1 model performance improved across all metrics when the features with with low VIF were selected for training.
 - In constrast, the HTRU2 model performed the best without selecting low VIF or top importance features.
+<div align="center">
 <img src="results/figures/htru1_to_htru2.png" width="500">
 <img src="results/figures/htru2_to_htru1.png" width="500">
+</div>
 
 ## Datasets
 
