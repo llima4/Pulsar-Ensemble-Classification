@@ -35,12 +35,14 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 
 2. Model Performance:
 - Models trained and tested on the same dataset generally performed well across all metrics, especially the model trained on the HTRU1 dataset due to its larger volume:
+
 <div align="center">
-| | Accuracy | Precision | Recall | F1 | MCC |
+| - | Accuracy | Precision | Recall | F1 | MCC |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | HTRU1 | 0.9996 | 0.9754 | 0.9958 | 0.9855 | 0.9854 |
 | HTRU2 | 0.9841 | 0.9385 | 0.8841 | 0.9105 | 0.9023 |
 </div>
+
 - The cross-dataset testing experiment revealed slightly worse overall performance as seen in the figure below.
 - The model trained on HTRU1 had more stable performance across accuracy, precision, F!, and MCC compared to the HTRU2 model.
 - The HTRU1 model performance improved across all metrics when the features with with low VIF were selected for training.
