@@ -43,6 +43,7 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 | HTRU2 | 0.9841 | 0.9385 | 0.8841 | 0.9105 | 0.9023 |
 
 </div>
+
 - The cross-dataset testing experiment revealed slightly worse overall performance as seen in the figure below.
 - The model trained on HTRU1 had more stable performance across accuracy, precision, F!, and MCC compared to the HTRU2 model.
 - The HTRU1 model performance improved across all metrics when the features with with low VIF were selected for training.
