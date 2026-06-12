@@ -95,6 +95,10 @@ def main():
 
     print(results_within.round(4))
     print("="*50)
+    
+    results_within.to_csv(
+        "results/tables/within_dataset_performance.csv"
+    )
 
     print("\nRunning transfer experiments...\n")
 
