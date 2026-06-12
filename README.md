@@ -3,7 +3,7 @@
 ## Project Goal
 Distinguishing between real pulsars and radio frequency interference has posed a long-standing challenge in radio astronomy. Machine learning methods offer a promising solution for building a more efficient pipeline for collecting high-volume data on pulsars using radio telescopes. Thus, this project's main goals are the following:
 
-1. Build robust ensemble learning models (XGBoost and random forest) for classifying pulsar candidates.
+1. Build robust ensemble learning models for classifying pulsar candidates.
 2. Investigate feature selection and cross-dataset generalization using the HTRU1 and HTRU2 datasets.
 
 ## Research Questions
@@ -17,12 +17,12 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 - Feature Distribution Analysis
 - Feature Correlation Analysis
 - Variance Inflation Factor
+- XGBoost Algorithm
 - XGBoost Feature Importance
-- Random Forest Feature Importance
 - Cross-Dataset Testing
 
 ## Results 
-The following results are associated with the XGBoost experiments. Results involving random forest were similar and can be retrieved through running `python main.py --model rf`.
+Note that the main results discussed below are associated with models trained using XGBoost. Results using random forests were similar and can be retrieved through running `python main.py --model rf`.
 
 1. Feature Analysis:
  - Models trained on both datasets agreed on some of the most important features such as skewness of the integrated pulse profile and best S/N value (score 13).
