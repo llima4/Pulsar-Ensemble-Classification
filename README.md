@@ -22,6 +22,8 @@ Distinguishing between real pulsars and radio frequency interference has posed a
 - Cross-Dataset Testing
 
 ## Results 
+The following results are associated with the XGBoost experiments. Results involving random forest were similar and can be retrieved through running `python main.py --model rf`.
+
 1. Feature Analysis:
  - Models trained on both datasets agreed on some of the most important features such as skewness of the integrated pulse profile and best S/N value (score 13).
  - The two models disagreed on most of the feature importances.
